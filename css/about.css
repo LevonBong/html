@@ -1,5 +1,7 @@
 body {
   background:#79C5CD;
+  font-family:"Comic Sans MS", "Comic Sans";
+  
 }
 
 h1 {
@@ -7,3 +9,8 @@ h1 {
   font-family:"Comic Sans MS", "Comic Sans";
   color:#ffffff;
 }
+
+nav {
+  text-align: center;
+}
+  
