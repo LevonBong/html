@@ -1,5 +1,5 @@
 body {
-  background:#79C5CD;
+  background:#1BA11B;
   font-family:"Comic Sans MS", "Comic Sans";
   
 }
@@ -8,6 +8,11 @@ h1 {
   text-align:center;
   font-family:"Comic Sans MS", "Comic Sans";
   color:#ffffff;
+}
+
+h2 {
+  color:#FFF54F;
+  text-align:center;
 }
 
 nav {
