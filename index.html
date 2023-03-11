@@ -1,46 +1,198 @@
-<!doctype html>
-
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>HTML Example</title>
-  
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/about.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>코딩네컷!</title>
+    <style>
+        /* 이서윤체 폰트 적용 코드 */
+        @font-face{
+            font-family:"LeeSeoyun";
+            src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/LeeSeoyun.woff")
+          format("woff");
+        font-weight: normal;
+        font-style: normal;
+        }
+        body {
+            font-family: "LeeSeoyun";
+            margin: 0; 
+            /*웹페이지의 배경에 이미지를 부여해서 마진을 0으로 설정.*/
+            display: flex; 
+            /*flex = felxible. 유연하게 정렬을 한다 */
+            justify-content: center; 
+            /*유연하게 정렬 하면서 가운데에 정렬한다.*/
+            background-image: url("./background.png");
+            /*같은 파일에 위치한 이미지 파일을 호출함. */
+
+        } 
+        .container{
+            width:390px; /* 390px가 핸드폰의 너비와 유사. */
+            background-color:#ff9d73;
+            height:100%; /* 컨테이너를 둘러 쌓은게 body태그인데, body태그 만큼의 높이를 차지하는 것. */
+        }
+        .photos{
+            margin-top:30px;
+
+        }
+        .photo-frame{
+            background-color:white;
+            margin: 15px 20px; /* 세로와 가로의 마진 너비 */
+            height:200px;
+            
+        }
+        .footer{
+            display:flex;
+            flex-direction: column; /* organizes objects in a column. If set as row, it would be side by side. */
+            align-items: center;
+
+        }
+        .f-title{
+            color:white;
+            font-size: 25px;
+            font-weight: 900;
+        }
+        .f-date{
+            color: white;
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .photo-frame{
+            background-size:cover;
+            position:relative; /* photoframe 밑에 있는 것을 어디에 놓을 것인지 설정을 할 수 있게 한다. */
+            cursor: pointer;
+        }
+
+        #image1{
+            background-image: url("./KakaoTalk_20230311_141940777_03.jpg");
+        }
+        #image2{
+            background-image: url("./KakaoTalk_20230311_142434208_01.jpg");
+        }
+        #image3{
+            background-image: url("./KakaoTalk_20230311_142434208_02.jpg");
+        }
+        #image4{
+            background-image: url("./KakaoTalk_20230311_142434208.jpg");
+        }
+
+        .photo_description{
+            color:white;
+            background-color: black;
+            width: fit-content;
+            padding: 0 20px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+
+            position:absolute; /*realtive로 설정한 포토 프레임 내에 앱솔루트 한 위치를 지정 하는 것.*/
+            bottom:0; /* 프레임 기준으로 밑에서 0만큼 올라오라는 속성을 부여*/ 
+            left: 50%;
+            transform: translate(-50%);
+            /*the two prompts above centers the text*/
+            opacity: 0;
+
+        }
+        .video{
+            width:100% ;
+            height:100%;
+        }
+        .showText{
+            opacity: 0;
+        }
+        .hideText{
+            opacity: 1;
+            transition: opacity 0.5s linear;
+        }
+
+
+    </style>
+
+    <script>
+        // 텍스트가 보여지는 기능
+        // 1. 몇 번째 사진에 마우스가 올라갔는지 확인(if문)
+        // 2. 해당 사진을 찾아 hideText class를 지워주고, showText는 삽입해줌
+        function showText(number) {
+            if (number === 1) {
+                document.querySelector("#desc1").classList.remove("hideText");
+                document.querySelector("#desc1").classList.add("showText");
+            } 
+            else if (number === 2) {
+                document.querySelector("#desc2").classList.remove("hideText");
+                document.querySelector("#desc2").classList.add("showText");
+            } 
+            else {
+                document.querySelector("#desc4").classList.remove("hideText");
+                document.querySelector("#desc4").classList.add("showText");
+            }
+        }
+
+// 텍스트가 감춰지는 기능
+// 1. 몇 번째 사진에서 마우스가 벗어났는지 확인(if문)
+// 2. 해당 사진을 찾아 shotText class를 지워주고, hideText는 삽입해줌
+        function hideText(number) {
+        if (number === 1) {
+            document.querySelector("#desc1").classList.remove("showText");
+            document.querySelector("#desc1").classList.add("hideText");
+        } else if (number === 2) {
+            document.querySelector("#desc2").classList.remove("showText");
+            document.querySelector("#desc2").classList.add("hideText");
+        } else {
+            document.querySelector("#desc4").classList.remove("showText");
+            document.querySelector("#desc4").classList.add("hideText");
+        }
+        }
+
+// 클릭 기능
+// 1. 선택된 사진의 숫자를 가진 텍스트를 alert 형태로 출력해줌
+function alertText(number) {
+	alert(`${number}번째 추억이에요! 눌러주셔서 감사합니다 :)`);
+}
+    </script>
 </head>
 <body>
-  <section class="center">
-    <aside class="sidebar"></aside>
-    
-    <section class="contents">
-      <!-- page will be include here -->
-      <section id="page" class="page">
-        <section id="about">
-          <section class="frame">
-            <h2><b>HELLO</b>WORLD</h2>
-            
-            <div class="cat">
-              <div class="picture">
-                <img src="images/mew.png" alt="Mew">
-              </div>
-              <small>Mew</small>
+    <div class="container">
+        <div class="photos">
+
+            <div id="image1" class="photo-frame"
+                onmouseover="hideText(1)"
+                onmouseout="showText(1)"
+                onclick="alertText(1)">
+                <span id="desc1" class="photo_description">
+                    산타할비 방문 한 날~!
+                </span>
             </div>
-            <div class="cat">
-              <div class="picture">
-                <img src="images/siesta.png" alt="Siesta">
-              </div>
-              <small>Siesta</small>
+
+            <div id="image2" class="photo-frame"onmouseover="hideText(2)"
+            onmouseout="showText(2)"
+            onclick="alertText(2)">
+                <span id="desc2" class="photo_description">
+                    도자기 다 만들고 먹을거 사냥하러 간 날~
+                </span>
             </div>
-            <div class="cat">
-              <div class="picture">
-                <img src="images/tiger.png" alt="Tiger">
-              </div>
-              <small>Tiger</small>
+
+            <div id="image3" class="photo-frame">
+                <iframe
+                    src="https://www.youtube.com/embed/n9DmdAwUbxc "
+                    frameborder="0"
+                    class="video">
+                </iframe>
             </div>
-          </section>
-        </section>
-      </section>
-    </section>
-  </section>
+
+            <div id="image4" class="photo-frame"onmouseover="hideText(4)"
+            onmouseout="showText(4)"
+            onclick="alertText(4)">
+                <span id="desc4" class="photo_description">
+                    사랑해💜
+                </span>
+            </div>
+        <div class="footer">
+                <p class="f-title">YAGADABINGBONG!</p>
+                <p class="f-date">2023.03.10</p>
+        </div>
+        </div>
+        
+    </div>
 </body>
+
 </html>
